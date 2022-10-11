@@ -10,27 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import dj_database_url
 import os
-from django.test.runner import DiscoverRunner
 import sys
-from pathlib import Path
-from dotenv import load_dotenv
 
+from pathlib import Path
+
+from dotenv import load_dotenv
+import dj_database_url
+from django.test.runner import DiscoverRunner
 import django_heroku
 
+# Carrega as variáveis de ambiente de um arquivo .env disponibilizado na raiz do projeto...
 load_dotenv()
 
+# Se existe a variável de ambiente 'DYNO' setada então a aplicação está rodando dentro do Heroku...
 IS_HEROKU = "DYNO" in os.environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# Chave de segurançao do Django setado no arquivo .env...
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -103,11 +102,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'django-rest-api',
-            'USER': 'admin',
-            'PASSWORD': 'admin',
-            'HOST': 'localhost',
-            'PORT': '3306',
+            'OPTIONS': {
+                'read_default_file': os.path.join(BASE_DIR, 'my.cnf')
+            }
         }
     }
 
