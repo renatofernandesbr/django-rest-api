@@ -21,7 +21,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Se está rodando dentro do Heroku, então permite acesso de qualquer lugar. (Apenas para testes de deploy)
+# Se está rodando dentro do Heroku, então permite acesso de qualquer lugar.
 if IS_HEROKU:
     ALLOWED_HOSTS = ["*"]
 else:
