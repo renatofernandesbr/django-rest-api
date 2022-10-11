@@ -6,7 +6,7 @@ django.setup()
 from faker import Faker
 from validate_docbr import CPF
 import random
-from apps.cliente.models import Cliente
+from cliente.models import Cliente
 
 def criando_pessoas(quantidade_de_pessoas):
     fake = Faker('pt_BR')
