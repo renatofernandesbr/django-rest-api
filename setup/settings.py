@@ -109,7 +109,7 @@ else:
         }
     }
 
-
+print(DATABASES)
 MAX_CONN_AGE = 600
 
 if "DATABASE_URL" in os.environ:
