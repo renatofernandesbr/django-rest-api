@@ -31,7 +31,8 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'rf-django-rest-api-clientes.herokuapp.com'
+    'rf-django-rest-api-clientes.herokuapp.com',
+    'localhost'
 ]
 
 
@@ -87,9 +88,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': os.path.join(BASE_DIR, 'my.cnf')
-        }
+        'NAME': 'django-rest-api',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
