@@ -18,7 +18,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 from django.test.runner import DiscoverRunner
-import django_heroku
 
 # Carrega as variáveis de ambiente de um arquivo .env disponibilizado na raiz do projeto...
 load_dotenv()
@@ -118,7 +117,20 @@ if "DATABASE_URL" in os.environ:
         conn_max_age=MAX_CONN_AGE, ssl_require=True)
 
 
+db_from_env = dj_database_url.config(default=DATABASES['default'], conn_max_age=500, ssl_require=True)
+DATABASES['default'].update(db_from_env)
+from sqlalchemy import create_engine
+db_engine = DATABASES['default']['ENGINE']
+db_name = DATABASES['default']['NAME']
+db_user = DATABASES['default']['USER']
+db_password = DATABASES['default']['PASSWORD']
+db_host = DATABASES['default']['HOST']
+db_port = DATABASES['default']['PORT']
+ENGINE = create_engine("postgresql+psycopg2://"+db_user+":"+db_password+"@"+db_host+":"+str(db_port)+"/"+db_name)
+
+
 print(DATABASES)
+print(ENGINE)
 
 
 # Password validation
