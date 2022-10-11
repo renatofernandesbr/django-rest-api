@@ -96,6 +96,7 @@ if IS_HEROKU:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "django-rest-api",
         }
     }
 else:
