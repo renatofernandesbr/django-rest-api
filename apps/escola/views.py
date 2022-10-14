@@ -1,4 +1,3 @@
-from types import NoneType
 from escola.models import Aluno, Curso, Matricula
 from escola.serializer import (AlunoSerializer,
                                AlunoSerializerV2,
@@ -16,7 +15,8 @@ from rest_framework.serializers import Serializer
 @staticmethod
 def create_serializer_class(serializer_class, request) -> Serializer:
     if not issubclass(serializer_class, Serializer):
-        raise APIException(f'O serializador {serializer_class} não é uma subclasse de rest_framework.serializers.Serializer.')
+        raise APIException(f'O serializador {serializer_class} não é uma'
+                           'subclasse de rest_framework.serializers.Serializer.')
     return serializer_class(data=request.data)  # pylint: disable=not-callable
 
 
