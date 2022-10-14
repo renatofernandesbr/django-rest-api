@@ -14,6 +14,6 @@ router.register('matriculas', MatriculasViewSet, basename='Matriculas')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('aluno/<int:pk>/matriculas/', MatriculasAlunoAPIView.as_view()),
-    path('curso/<int:pk>/alunos/', AlunosCursoAPIView.as_view()),
+    path('alunos/<int:pk>/matriculas/', MatriculasAlunoAPIView.as_view()),
+    path('cursos/<int:pk>/alunos/', AlunosCursoAPIView.as_view()),
 ]
